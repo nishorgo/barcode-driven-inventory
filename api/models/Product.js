@@ -19,12 +19,13 @@ const productSchema = new mongoose.Schema({
   price: {
     type: Number,
     required: true,
-    min: 0
+    min: [0, 'Price cannot be less than 0'],
   },
   stock: {
     type: Number,
+    default: 0,
     required: true,
-    min: 0
+    min: [0, 'Stock cannot be less than 0'],
   }
 }, { timestamps: true });
 
