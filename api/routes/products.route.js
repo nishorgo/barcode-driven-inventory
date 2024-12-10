@@ -5,12 +5,10 @@ const auth = require('../middleware/auth');
 const { createProduct, getAllProducts, updateProductCategory } = require('../controllers/products.controller');
 
 router.post('/',
-    auth,
     [
       body('name').trim().notEmpty(),
-      body('category').trim().notEmpty(),
-      body('price').isFloat({ min: 0 }),
-      body('stock').isInt({ min: 0 })
+      body('barcode').trim().notEmpty(),
+      body('description').trim().notEmpty(),
     ],
     createProduct
 );
@@ -18,7 +16,6 @@ router.post('/',
 router.get('/', getAllProducts);
 
 router.patch('/:id/',
-    auth,
     [
         body('category').trim().notEmpty()
     ],
