@@ -4,6 +4,7 @@ import BarcodeScanner from '@/components/BarcodeScanner'
 import KanbanBoard from '@/components/KanbanBoard'
 import { useRef } from 'react'
 import { Product } from '@/types/product'
+import AuthWrapper from '@/components/AuthWrapper'
 
 export default function Home() {
   // Create a reference to the KanbanBoard component to call its method
@@ -18,6 +19,7 @@ export default function Home() {
   };
 
   return (
+    <AuthWrapper>
     <main className="flex min-h-screen justify-between p-24">
       <div className="z-10 w-full font-mono text-sm">
       <h1 className="text-4xl font-bold ps-4">Inventory Scanner</h1>
@@ -32,5 +34,6 @@ export default function Home() {
 
       </div>
     </main>
+    </AuthWrapper>
   )
 }

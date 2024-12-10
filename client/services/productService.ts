@@ -1,4 +1,4 @@
-import { BASE_URL, PRODUCT_DESCRIPTION_API_URL } from "@/constants";
+import { BASE_URL } from "@/constants";
 import { Product } from "@/types/product";
 import axios from "axios";
 

@@ -5,6 +5,7 @@ import { getAllProducts } from '@/services/productService';
 import { Product } from '@/types/product';
 import Link from 'next/link';
 import { BarChart3, Package, ArrowUpRight, Boxes, Search } from 'lucide-react';
+import AuthWrapper from '@/components/AuthWrapper';
 
 export default function Home() {
   const [analytics, setAnalytics] = useState({
@@ -16,6 +17,7 @@ export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
   const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+
 
   useEffect(() => {
     const fetchAnalytics = async () => {
@@ -78,6 +80,7 @@ export default function Home() {
   }, [searchQuery, allProducts]);
 
   return (
+    <AuthWrapper>
     <main className="min-h-screen p-8">
       <div className="max-w-7xl mx-auto">
         <div className="flex justify-between items-center mb-8">
@@ -104,6 +107,7 @@ export default function Home() {
               className="block w-full pl-10 pr-3 py-2 border border-gray-300 text-gray-600 rounded-lg focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
+
           {/* Search Results */}
           {searchQuery.trim() !== '' && (
             <div className="mt-4 bg-white rounded-lg shadow-md">
@@ -199,5 +203,6 @@ export default function Home() {
         </div>
       </div>
     </main>
+    </AuthWrapper>
   );
 }
