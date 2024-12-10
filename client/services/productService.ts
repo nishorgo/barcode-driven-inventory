@@ -24,6 +24,18 @@ export const scanAndFetchProduct = async (barcode: string) => {
     }
 }
 
+
+export const getAllProducts = async () => {
+    try {
+        const response = await axiosInstance.get('/products');
+        return response.data;
+    } catch (error) {
+        console.log(`Error fetching products: ${error}`);
+        throw new Error(`Error fetching products: ${error}`);
+    }
+}
+
+
 export const createProduct = async (product: Product) => {
     try {
         const response = await axiosInstance.post('/products', product);
@@ -31,5 +43,16 @@ export const createProduct = async (product: Product) => {
     } catch (error) {
         console.log(`Error creating product: ${error}`);
         throw new Error(`Error creating product: ${error}`);
+    }
+}
+
+
+export const updateProductCategory = async (id: string, category: string) => {
+    try {
+        const response = await axiosInstance.patch(`/products/${id}`, { category });
+        return response.data;
+    } catch (error) {
+        console.log(`Error updating product category: ${error}`);
+        throw new Error(`Error updating product category: ${error}`);
     }
 }

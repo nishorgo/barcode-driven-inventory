@@ -1,11 +1,15 @@
 "use client"
 
-import { createProduct, scanAndFetchProduct } from '@/services/productService';
+import { scanAndFetchProduct } from '@/services/productService';
 import { Product } from '@/types/product';
 import { Html5QrcodeScanner } from 'html5-qrcode';
 import { useEffect, useState } from 'react';
 
-const BarcodeScanner = () => {
+interface BarcodeScannerProps {
+  onProductScanned: (product: Product) => void;
+}
+
+const BarcodeScanner = ({ onProductScanned }: BarcodeScannerProps) => {
     const [scannedCode, setScannedCode] = useState<string>('');
     const [fetchedProduct, setFetchedProduct] = useState<string>('');
 
@@ -22,7 +26,6 @@ const BarcodeScanner = () => {
         async function onScanSuccess(decodedText: string, decodedResult: any) {
             try {
                 const scannedProduct = await scanAndFetchProduct(decodedText);
-                scanner.clear();
                 setScannedCode(decodedText);
                 setFetchedProduct(scannedProduct.description);
 
@@ -30,12 +33,10 @@ const BarcodeScanner = () => {
                     barcode: decodedText,
                     name: scannedProduct.description,
                     description: scannedProduct.description,
-                    stock: 134, // Default quantity
-                    price: 70, // Default price, update as needed
                 };
 
-                const created = await createProduct(newProduct);
-                console.log('Product created:', created);
+                // Call the prop function to add product to Kanban board
+                onProductScanned(newProduct);
             } catch (error) {
                 console.error('Error processing product:', error);
             }
@@ -53,10 +54,10 @@ const BarcodeScanner = () => {
         return () => {
             scanner.clear();
         };
-    }, []);
+    }, [onProductScanned]);
 
     return (
-        <div className="flex flex-col gap-4 bg-white m-4 p-4 rounded-lg shadow-md">
+        <div className="flex flex-col gap-4 bg-gray-100 text-gray-600 m-4 p-4 rounded-lg shadow-md">
             <div id="reader" className="w-full"></div>
             {scannedCode && (
                 <div className="p-4 bg-gray-100 rounded-lg">
