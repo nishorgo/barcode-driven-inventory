@@ -1,7 +1,7 @@
 # Inventory Management System
 
 ## Overview
-This project is an Inventory Management System designed to help users efficiently track and manage their inventory. It features a barcode scanner for easy product addition, a Kanban board for product categorization, and an analytics dashboard for insights into inventory status. Although I didn't get enough time to implement a complete login system, a basic authentication system ensures secure access to the application. I thoroughly enjoyed the challenge of implementing such a system within a short timeframe. Here is a demo video of the application in action: ![Click to Watch](https://youtu.be/IGRe7jD6rsU)
+This project is an Inventory Management System designed to help users efficiently track and manage their inventory. It features a barcode scanner for easy product addition, a Kanban board for product categorization, and an analytics dashboard for insights into inventory status. Although I didn't get enough time to implement a complete login system, a basic authentication system ensures secure access to the application. I thoroughly enjoyed the challenge of implementing such a system within a short timeframe. [Click to Watch](https://youtu.be/IGRe7jD6rsU)
 
 ## Project Structure
 The project is structured as follows:
