@@ -2,6 +2,7 @@ const typeDefs = `#graphql
   type Product {
     id: ID
     name: String!
+    barcode: String
     category: String!
     price: Float!
     stock: Int!
@@ -18,6 +19,7 @@ const typeDefs = `#graphql
 
   input ProductInput {
     name: String!
+    barcode: String
     category: String!
     price: Float!
     description: String
@@ -31,6 +33,7 @@ const typeDefs = `#graphql
       page: Int = 1
       limit: Int = 10
     ): ProductPaginationResult
+    getProductByBarcode(barcode: String!): Product
   }
 
   type Mutation {
@@ -39,6 +42,7 @@ const typeDefs = `#graphql
       id: ID!
       category: String!
     ): Product
+    scanAndSaveProduct(barcode: String!): Product
   }
 `;
 

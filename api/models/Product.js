@@ -6,6 +6,12 @@ const productSchema = new mongoose.Schema({
     required: true,
     trim: true
   },
+  barcode: {
+    type: String,
+    unique: true,
+    sparse: true,
+    trim: true
+  },
   category: {
     type: String,
     default: 'Uncategorized',
@@ -31,5 +37,6 @@ const productSchema = new mongoose.Schema({
 
 // Create indexes for search functionality
 productSchema.index({ name: 'text', category: 'text' });
+productSchema.index({ barcode: 1 });
 
 module.exports = mongoose.model('Product', productSchema);
