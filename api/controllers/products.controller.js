@@ -22,7 +22,7 @@ const createProduct = async (req, res) => {
 // Get all products with optional category filter and search
 const getAllProducts = async (req, res) => {
     try {
-      const { category, search, page = 1, limit = 10 } = req.query;
+      const { category, search, page = 1, limit = 100 } = req.query;
       let query = {};
   
       // Category filter (case-insensitive)
